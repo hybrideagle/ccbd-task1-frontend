@@ -1,5 +1,5 @@
 /** This component renders the posts from a single person, and takes id as a prop.
-    It uses the StudentDetails component.
+    It uses the Posts component.
 */
 import Posts from './posts'
 import React, { Component } from 'react';
