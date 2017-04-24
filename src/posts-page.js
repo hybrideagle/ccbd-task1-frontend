@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import TopBar from './top-bar';
 import Paper from 'material-ui/Paper';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import FloatingActionButton from 'material-ui/FloatingActionButton'
 let temp_data = [{
     id:1,
     name:"asd",

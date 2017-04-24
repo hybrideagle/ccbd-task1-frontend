@@ -15,7 +15,7 @@ let User = (props) => {
               <div style={{display:"inline-block"}}>
               <CardActions>
                 <FlatButton label={"Add Friend"} secondary={true} style={{bgColor:"black"}} onTouchTap={() => props.addFriend(props.data.usn)}/>
-                </CardActions>
+              </CardActions>
               </div>
             </CardText>
         </Card>);

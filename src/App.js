@@ -5,7 +5,7 @@ import {BrowserRouter,Route, Redirect} from 'react-router-dom';
 import PostsPage from './posts-page';
 import FriendsPage from './friends-page';
 import UsersPage from './users-page'
-import feathers,{rest} from 'feathers-client';
+import feathers,{rest,hooks} from 'feathers-client';
 import HomePage from './home-page';
 import TopBar from './top-bar';
 import LeftNav from './left-nav';
@@ -21,16 +21,20 @@ import conn_string from './config'
 // Needed for onTouchTap
 injectTapEventPlugin();
 
-console.log("app");
 
 class App extends Component {
   constructor(props){
     super(props);
-    this.app = feathers().configure(rest(conn_string).superagent(superagent)).configure(auth());
+    this.app = feathers()
+      .configure(rest(conn_string)
+      .superagent(superagent))
+      .configure(hooks())
+      .configure(auth({storage:window.localStorage}));
+      console.log("app");
+
   }
   render() {
-    console.log(this.props.match);
-    let SelfPostsPageWrapper = (props) => <PostsPage app={this.app} id={app.get("user")} />;
+    let SelfPostsPageWrapper = (props) => <PostsPage app={this.app} id={this.app.get("user")} />;
     let PostsPageWrapper = (props) => <PostsPage app={this.app} id={props.params.match.id}/>;
     let FriendsPageWrapper = (props) => <FriendsPage app={this.app}/>;
     let UsersPageWrapper = (props) => <UsersPage app={this.app} name={props.match.params.name}/>;

@@ -30,7 +30,7 @@ let UsersCard = () =>
 );
 
 //expects a name for as the param `name`, defaults to no filtering if undefined.
-class UsersPage extends Component {
+class FriendsPage extends Component {
   constructor(props){
     super(props);
     let app = this.props.app;
@@ -42,9 +42,19 @@ class UsersPage extends Component {
     this.usersService = app.service('/users');
     console.log(this.usersService);
     this.usersService.find().then(
-      data => {
-        console.log("data",data);
-        this.setState({ data: data });
+      () => {
+        let friends = this.friends;
+        let query = {
+          _id:{
+            $in: friends
+          }
+        };
+        this.userService.find(query).then(
+          data => {
+            console.log("data",data);
+            this.setState({ data: data });
+          }
+        )
       }
     )
   }
@@ -58,4 +68,4 @@ class UsersPage extends Component {
     );
   }
 }
-export default UsersPage;
+export default FriendsPage;

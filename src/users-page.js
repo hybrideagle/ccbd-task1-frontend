@@ -24,13 +24,13 @@ let temp_data = [{
 let UsersCard = () =>
 (<div style={{width:"50%",margin:"0 auto",textAlign:"center"}}>
     <Paper zDepth={2}>
-      <h1>Students</h1>
+      <h1>Users</h1>
     </Paper>
   </div>
 );
 
 //expects a name for as the param `name`, defaults to no filtering if undefined.
-class FriendsPage extends Component {
+class UsersPage extends Component {
   constructor(props){
     super(props);
     let app = this.props.app;
@@ -42,18 +42,10 @@ class FriendsPage extends Component {
     this.usersService = app.service('/users');
     console.log(this.usersService);
     this.usersService.find().then(
-      let friends = this.friends;
-      query = {
-        _id:{
-          $in: friends
-        }
-      };
-      this.userService.find(query).then(
-        data => {
-          console.log("data",data);
-          this.setState({ data: data });
-        }
-      )
+      data => {
+        console.log("data",data);
+        this.setState({ data: data });
+      }
     )
   }
 
@@ -66,4 +58,4 @@ class FriendsPage extends Component {
     );
   }
 }
-export default FriendsPage;
+export default UsersPage;
